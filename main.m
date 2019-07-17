@@ -1,0 +1,1 @@
+para=struct('d',1,'theta',1.2/360*2*pi,'V',8,'phi',-89.6/360*2*pi,'omega',-8.5)
