@@ -1,5 +1,5 @@
 function [kxmap,kymap,kx2map,ky2map,bcmap]=berrycurvature(level,parameters)
-n=100;
+n=40;
 bM1=parameters.bM1;
 kp=parameters.kp;
 kn=parameters.kn;
@@ -24,7 +24,7 @@ parfor xindex=1:length(xrange)
         y=xrange(yindex);
         k=x*a1+y*a2;
         right=k+[bM1(1)/(2*n),0];
-        left=k+[bM1(1)/(2*n),0];
+        left=k+[-bM1(1)/(2*n),0];
         up=k+[0,3*kn(2)/n];
         down=k+[0,3*kp(2)/n];
         kxlist(yindex)=k(1);
