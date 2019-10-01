@@ -1,4 +1,4 @@
-function [val,vec]=energy(kx,ky,parameters)
+function [val,vec]=energyTMD(kx,ky,parameters)
 %energy at (kx,ky)
 DeltaTmat=parameters.DeltaTmat;
 DeltaTTmat=parameters.DeltaTTmat;
