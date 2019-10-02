@@ -46,4 +46,8 @@ xlength=parameters.NN*parameters.a0;
 kxlist=2*pi/xlength*(-floor(parameters.NN/2):floor((parameters.NN-1)/2));
 kylist=kxlist;
 surf(kxlist,1000*enlist,squeeze((enmapk(parameters.NN/2,:,:)))','edgecolor','none');view(2);
-savefig(sprintf("NN%da%d.fig",parameters.NN,parameters.a0/parameters.a))
+savefig(fig,sprintf("NN%da%d.fig",parameters.NN,parameters.a0/parameters.a))
+fig2=figure;
+surf(kxlist,1000*enlist,squeeze(log(enmapk(parameters.NN/2,:,:)))','edgecolor','none');view(2);
+savefig(fig2,sprintf("NN%da%d_log.fig",parameters.NN,parameters.a0/parameters.a))
+
