@@ -39,7 +39,7 @@ for i=1:length(enlist)
     enmapk(:,:,i)=sum(deltaf.*psif,3);
 end
 
-% save(sprintf("NN%da%d.mat",parameters.NN,parameters.a0/parameters.a),'-v7.3');
+save(sprintf("NN%da%d.mat",parameters.NN,parameters.a0/parameters.a),'-v7.3');
 figure;
 xlength=parameters.NN*parameters.a0;
 kxlist=2*pi/xlength*(-floor(parameters.NN/2):floor((parameters.NN-1)/2));
