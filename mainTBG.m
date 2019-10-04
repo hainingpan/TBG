@@ -1,14 +1,18 @@
 function parameters=mainTBG()
 parameters=struct('a',0.246e-3*5.076,'theta',1.2/360*2*pi,...
-    'w0',0e-3,'w1',0e-3,'vf',1e6/3e8,...
+    'w0',90e-3,'w1',117e-3,'vf',1e6/3e8,...
     'Nmax',5,...
-    'a0',0.246e-3*5.076*1,'NN',300);
+    'a0',0.246e-3*5.076*1.5,'NN',20,'n',2);
 
 %Pauli matrix
 parameters.sigma0=eye(2);
 parameters.sigmax=[0,1;1,0];
 parameters.sigmay=[0,-1i;1i,0];
 parameters.sigmaz=[1,0;0,-1];
+%Moire lattice
+parameters.aM=parameters.a/parameters.theta;
+parameters.aM1=parameters.aM*[sqrt(3)/2,1/2];
+parameters.aM2=parameters.aM*[-sqrt(3)/2,1/2];
 
 %Reciprocal lattice
 parameters.bM1= (4*pi/(sqrt(3)*parameters.a/parameters.theta))*[1/2,sqrt(3)/2];  %reciprocal unit vector of small lattice  b1=b+ in Wu,PRB, 2019
