@@ -1,6 +1,15 @@
-function parameters=mainTMD()
-parameters=struct('a',3.472e-4*5.076,'m',0.62*0.511e6,'theta',1.2/360*2*pi,'V',8e-3,'psi',-89.6/360*2*pi,'w',-8.5e-3,...
-    'Nmax',5);
+function parameters=mainTMD(varargin)
+p=inputParser;
+addParameter(p,'a',3.472e-4*5.076);
+addParameter(p,'m',0.35);
+addParameter(p,'theta',1.2);
+addParameter(p,'V',8);
+addParameter(p,'psi',-89.6);
+addParameter(p,'w',-8.5);
+addParameter(p,'Nmax',5);
+parse(p,varargin{:});
+parameters=struct('a',p.Results.a,'m',p.Results.m*0.511e6,'theta',p.Results.theta/360*2*pi,'V',p.Results.V*1e-3,'psi'...
+    ,p.Results.psi/360*2*pi,'w',p.Results.w*1e-3,'Nmax',p.Results.Nmax);
 %Reciprocal lattice
 parameters.G1=[0,4*pi/(sqrt(3)*parameters.a)];
 parameters.G2=[-2*pi/parameters.a,(2*pi)/(sqrt(3)*parameters.a)];
