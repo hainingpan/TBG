@@ -1,5 +1,5 @@
-Vrange=linspace(0,20,20);
-psirange=linspace(0,360,20);
+Vrange=linspace(0,20,100);
+psirange=linspace(0,360,100);
 bp=zeros(length(Vrange),length(psirange));
 
 for Vindex=1:length(Vrange)
@@ -8,6 +8,7 @@ for Vindex=1:length(Vrange)
         bp(Vindex,psiindex)=bf(psirange(psiindex),Vrange(Vindex),10);
     end
 end
+
         
 
 
