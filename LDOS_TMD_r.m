@@ -6,7 +6,7 @@ rAB=[1/sqrt(3),0]*parameters.a/parameters.theta;
 
 eta=1e-3;
 
-n=20;
+n=5;
 xrange=-n:n;
 yrange=-n:n;
 bM1=parameters.bM1;
@@ -42,7 +42,7 @@ end
 enlist=linspace(min(enmap(:,:,4),[],'all'),max(enmap(:,:,1),[],'all'),100);
 ldosAA=zeros(1,length(enlist));
 parfor i=1:length(enlist)
-    fprintf("i_r=%d of %d\n",i,length(enlist));
+%     fprintf("i_r=%d of %d\n",i,length(enlist));
     deltaf=eta./((enlist(i)-enmap).^2+eta^2);
     ldosprod=psiAA2.*deltaf;
     ldosAA(i)=sum(ldosprod(:));
@@ -50,7 +50,7 @@ end
 % 
 ldosAB=zeros(1,length(enlist));
 parfor i=1:length(enlist)
-    fprintf("i_r=%d of %d\n",i,length(enlist));
+%     fprintf("i_r=%d of %d\n",i,length(enlist));
     deltaf=eta./((enlist(i)-enmap).^2+eta^2);
     ldosprod=psiAB2.*deltaf;
     ldosAB(i)=sum(ldosprod(:));
