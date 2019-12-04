@@ -33,8 +33,8 @@ parfor xindex=1:Nx
     end
 end
 
-enlist1=linspace(min(enmap(:,:,1),[],'all'),max(enmap(:,:,1),[],'all'),100);
-enlist2=linspace(min(enmap(:,:,2),[],'all'),max(enmap(:,:,2),[],'all'),100);
+enlist1=linspace(min(enmap(:,:,1),[],'all'),max(enmap(:,:,1),[],'all'),50);
+enlist2=linspace(min(enmap(:,:,2),[],'all'),max(enmap(:,:,2),[],'all'),50);
 
 ldosAA1=zeros(1,length(enlist1));
 ldosAA2=zeros(1,length(enlist2));
@@ -54,7 +54,7 @@ parfor i=1:length(enlist2)
     ldosAA2(i)=sum(ldosprod(:));
 end 
 
-intAA=sum(ldosAA1(:))/sum(ldosAA2(:));
+intAA=sum(ldosAA1(:))*(enlist1(2)-enlist1(1))/(sum(ldosAA2(:))*(enlist2(2)-enlist2(1)));
 %
 ldosAB1=zeros(1,length(enlist1));
 ldosAB2=zeros(1,length(enlist2));
@@ -72,7 +72,13 @@ parfor i=1:length(enlist2)
     ldosAB2(i)=sum(ldosprod(:));
 end
 
-intAB=sum(ldosAB1(:))/sum(ldosAB2(:));
+intAB=sum(ldosAB1(:))*(enlist1(2)-enlist1(1))/(sum(ldosAB2(:))*(enlist2(2)-enlist2(1)));
+
+
+int1=sum(ldosAA1(:))*(enlist1(2)-enlist1(1))/(sum(ldosAB1(:))*(enlist2(2)-enlist2(1)));
+
+int2=sum(ldosAA2(:))*(enlist1(2)-enlist1(1))/(sum(ldosAB2(:))*(enlist2(2)-enlist2(1)));
+
 % dos=zeros(1,length(enlist));
 % parfor i=1:length(enlist)
 %     deltaf=eta./((enlist(i)-enmap).^2+eta^2);

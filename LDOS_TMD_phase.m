@@ -1,22 +1,21 @@
-% Vrange=linspace(0,20,50);
-% psirange=linspace(0,360,50);
-% % ldos=cell(length(Vrange),length(psirange));
-% intAA=zeros(length(Vrange),length(psirange));
-% intAB=zeros(length(Vrange),length(psirange));
-% 
-% for Vindex=1:length(Vrange)
-%     for psiindex=1:length(psirange)
-%         disp([Vindex,psiindex]);
-%         psi=psirange(psiindex);
-%         V=Vrange(Vindex);
-%         parameters=mainTMD('m',0.35,'psi',psi,'V',V,'w',10);
-%         [intAA(Vindex,psiindex),intAB(Vindex,psiindex)]=LDOS_TMD_r(parameters);
-%     end
-% end
-% 
-% parameters=mainTMD('m',0.35,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3);
-parameters=mainTMD('m',0.35,'psi',100,'V',20,'w',10);
-% [ldosAA,ldosAB,intAA,intAB,enlist]=LDOS_TMD_r(parameters);
-% [intAA,intAB]=LDOS_TMD_r(parameters);
+Vrange=linspace(0,20,50);
+psirange=linspace(0,360,50);
+int1=zeros(length(Vrange),length(psirange));
+int2=zeros(length(Vrange),length(psirange));
 
-[ldos,enlist]=LDOS_TMD_rx(parameters);
+for Vindex=1:length(Vrange)
+    for psiindex=1:length(psirange)
+        disp([Vindex,psiindex]);
+        psi=psirange(psiindex);
+        V=Vrange(Vindex);
+        parameters=mainTMD('m',0.35,'psi',psi,'V',V,'w',10);
+        [int1(Vindex,psiindex),int2(Vindex,psiindex)]=LDOS_TMD_r(parameters);
+    end
+end
+
+% parameters=mainTMD('m',0.35,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3);
+% parameters=mainTMD('m',0.35,'psi',100,'V',20,'w',10);
+% [ldosAA,ldosAB,intAA,intAB,enlist]=LDOS_TMD_r(parameters);
+% [int1,int2]=LDOS_TMD_r(parameters);
+
+% [ldos,enlist]=LDOS_TMD_rx(parameters);

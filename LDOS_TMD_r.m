@@ -1,4 +1,4 @@
-function [intAA,intAB]=LDOS_TMD_r(parameters)
+function [int1,int2]=LDOS_TMD_r(parameters)
 %AA:r=(0,0)
 %AB:r=(1/sqrt(3) aM,0) aM=a/theta
 rAA=[0,0];
@@ -54,7 +54,7 @@ parfor i=1:length(enlist2)
     ldosAA2(i)=sum(ldosprod(:));
 end 
 
-intAA=sum(ldosAA1(:))*(enlist1(2)-enlist1(1))/(sum(ldosAA2(:))*(enlist2(2)-enlist2(1)));
+% intAA=sum(ldosAA1(:))*(enlist1(2)-enlist1(1))/(sum(ldosAA2(:))*(enlist2(2)-enlist2(1)));
 %
 ldosAB1=zeros(1,length(enlist1));
 ldosAB2=zeros(1,length(enlist2));
@@ -72,7 +72,13 @@ parfor i=1:length(enlist2)
     ldosAB2(i)=sum(ldosprod(:));
 end
 
-intAB=sum(ldosAB1(:))*(enlist1(2)-enlist1(1))/(sum(ldosAB2(:))*(enlist2(2)-enlist2(1)));
+% intAB=sum(ldosAB1(:))*(enlist1(2)-enlist1(1))/(sum(ldosAB2(:))*(enlist2(2)-enlist2(1)));
+
+
+int1=sum(ldosAA1(:))*(enlist1(2)-enlist1(1))/(sum(ldosAB1(:))*(enlist1(2)-enlist1(1)));
+
+int2=sum(ldosAA2(:))*(enlist2(2)-enlist2(1))/(sum(ldosAB2(:))*(enlist2(2)-enlist2(1)));
+
 % dos=zeros(1,length(enlist));
 % parfor i=1:length(enlist)
 %     deltaf=eta./((enlist(i)-enmap).^2+eta^2);
