@@ -7,9 +7,7 @@ for Vindex=1:length(Vrange)
         disp([Vindex,psiindex]);
         bp(Vindex,psiindex)=bf(psirange(psiindex),Vrange(Vindex),10);
     end
-end
-
-        
+end        
 
 
 
