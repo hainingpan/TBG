@@ -34,4 +34,3 @@ line(klist([200,200]),[-200,30]);
 xticks(klist([1,40,80,120,200]))
 xticklabels({'\kappa_+^\prime','\gamma','\kappa_-','\kappa_+','\kappa_+^\prime'});
 xlim([klist(1),klist(end)])
-ylim([-20,25])

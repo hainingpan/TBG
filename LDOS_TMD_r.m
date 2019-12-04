@@ -33,29 +33,55 @@ parfor xindex=1:Nx
     end
 end
 
-enlist=linspace(min(enmap(:,:,4),[],'all'),max(enmap(:,:,1),[],'all'),100);
-ldosAA=zeros(1,length(enlist));
-parfor i=1:length(enlist)
+enlist1=linspace(min(enmap(:,:,1),[],'all'),max(enmap(:,:,1),[],'all'),50);
+enlist2=linspace(min(enmap(:,:,2),[],'all'),max(enmap(:,:,2),[],'all'),50);
+
+ldosAA1=zeros(1,length(enlist1));
+ldosAA2=zeros(1,length(enlist2));
+
+parfor i=1:length(enlist1)
 %     fprintf("i_r=%d of %d\n",i,length(enlist));
-    deltaf=eta./((enlist(i)-enmap).^2+eta^2);
+    deltaf=eta./((enlist1(i)-enmap).^2+eta^2);
     ldosprod=psiAA2.*deltaf;
-    ldosAA(i)=sum(ldosprod(:));
+    ldosAA1(i)=sum(ldosprod(:));
 end 
-%
-ldosAB=zeros(1,length(enlist));
-parfor i=1:length(enlist)
+
+
+parfor i=1:length(enlist2)
 %     fprintf("i_r=%d of %d\n",i,length(enlist));
-    deltaf=eta./((enlist(i)-enmap).^2+eta^2);
+    deltaf=eta./((enlist2(i)-enmap).^2+eta^2);
+    ldosprod=psiAA2.*deltaf;
+    ldosAA2(i)=sum(ldosprod(:));
+end 
+
+intAA=sum(ldosAA1(:))*(enlist1(2)-enlist1(1))/(sum(ldosAA2(:))*(enlist2(2)-enlist2(1)));
+%
+ldosAB1=zeros(1,length(enlist1));
+ldosAB2=zeros(1,length(enlist2));
+
+parfor i=1:length(enlist1)
+%     fprintf("i_r=%d of %d\n",i,length(enlist));
+    deltaf=eta./((enlist1(i)-enmap).^2+eta^2);
     ldosprod=psiAB2.*deltaf;
-    ldosAB(i)=sum(ldosprod(:));
+    ldosAB1(i)=sum(ldosprod(:));
 end
+parfor i=1:length(enlist2)
+%     fprintf("i_r=%d of %d\n",i,length(enlist));
+    deltaf=eta./((enlist2(i)-enmap).^2+eta^2);
+    ldosprod=psiAB2.*deltaf;
+    ldosAB2(i)=sum(ldosprod(:));
+end
+
+intAB=sum(ldosAB1(:))*(enlist1(2)-enlist1(1))/(sum(ldosAB2(:))*(enlist2(2)-enlist2(1)));
 % dos=zeros(1,length(enlist));
 % parfor i=1:length(enlist)
 %     deltaf=eta./((enlist(i)-enmap).^2+eta^2);
 %     dos(i)=sum(deltaf(:));
 % end
 
-intAA=sum(ldosAA(min(enmap(:,:,1),[],'all')<=enlist & enlist<=max(enmap(:,:,1),[],'all')))/sum(ldosAA(min(enmap(:,:,2),[],'all')<=enlist & enlist<=max(enmap(:,:,2),[],'all')));
-intAB=sum(ldosAB(min(enmap(:,:,1),[],'all')<=enlist & enlist<=max(enmap(:,:,1),[],'all')))/sum(ldosAB(min(enmap(:,:,2),[],'all')<=enlist & enlist<=max(enmap(:,:,2),[],'all')));
+% intAA=sum(ldosAA(min(enmap(:,:,1),[],'all')<=enlist & enlist<=max(enmap(:,:,1),[],'all')))...
+%     /sum(ldosAA(min(enmap(:,:,2),[],'all')<=enlist & enlist<=max(enmap(:,:,2),[],'all')));
+% intAB=sum(ldosAB(min(enmap(:,:,1),[],'all')<=enlist & enlist<=max(enmap(:,:,1),[],'all')))...
+%     /sum(ldosAB(min(enmap(:,:,2),[],'all')<=enlist & enlist<=max(enmap(:,:,2),[],'all')));
 
 end
