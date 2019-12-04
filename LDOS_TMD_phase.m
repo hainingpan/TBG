@@ -1,5 +1,5 @@
-Vrange=linspace(0,20,2);
-psirange=linspace(0,360,2);
+Vrange=linspace(0,20,50);
+psirange=linspace(0,360,50);
 dos1=zeros(length(Vrange),length(psirange),50);
 dos2=zeros(length(Vrange),length(psirange),50);
 enlist1=zeros(length(Vrange),length(psirange),50);
