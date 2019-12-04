@@ -8,11 +8,11 @@ for Vindex=1:length(Vrange)
         bp(Vindex,psiindex)=bf(psirange(psiindex),Vrange(Vindex),10);
     end
 end        
-
+save('bp.dat','bp');
 
 
 function bp=bf(psi,V,w)
-parameters=mainTMD('m',0.35,'psi',psi,'V',V,'w',w);
+parameters=mainTMD('m',0.35,'psi',psi,'V',V,'w',w,'theta',3);
 [kcxmap,kcymap,kcx2map,kcy2map,bcmap,omega]=berrycurvature(1,parameters);
 bp=sum(bcmap(:))*omega/(2*pi);
 end
