@@ -2,9 +2,10 @@ Vrange=linspace(0,20,50);
 psirange=linspace(0,360,50);
 int1=zeros(length(Vrange),length(psirange));
 int2=zeros(length(Vrange),length(psirange));
-
-for Vindex=1:length(Vrange)
-    for psiindex=1:length(psirange)
+NV=length(Vrange);
+Npsi=length(psirange);
+parfor Vindex=1:NV
+    for psiindex=1:Npsi
         disp([Vindex,psiindex]);
         psi=psirange(psiindex);
         V=Vrange(Vindex);

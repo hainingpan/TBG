@@ -21,7 +21,7 @@ psiAB2=zeros(2*n+1,2*n+1,2*(2*parameters.Nmax+1)^2);
 Nx=length(xrange);
 Ny=length(yrange);
 
-parfor xindex=1:Nx
+for xindex=1:Nx
     kx=xrange(xindex);
     for yindex=1:Ny
         ky=yrange(yindex);
@@ -39,7 +39,7 @@ enlist2=linspace(min(enmap(:,:,2),[],'all'),max(enmap(:,:,2),[],'all'),50);
 ldosAA1=zeros(1,length(enlist1));
 ldosAA2=zeros(1,length(enlist2));
 
-parfor i=1:length(enlist1)
+for i=1:length(enlist1)
 %     fprintf("i_r=%d of %d\n",i,length(enlist));
     deltaf=eta./((enlist1(i)-enmap).^2+eta^2);
     ldosprod=psiAA2.*deltaf;
@@ -47,7 +47,7 @@ parfor i=1:length(enlist1)
 end 
 
 
-parfor i=1:length(enlist2)
+for i=1:length(enlist2)
 %     fprintf("i_r=%d of %d\n",i,length(enlist));
     deltaf=eta./((enlist2(i)-enmap).^2+eta^2);
     ldosprod=psiAA2.*deltaf;
@@ -59,13 +59,13 @@ end
 ldosAB1=zeros(1,length(enlist1));
 ldosAB2=zeros(1,length(enlist2));
 
-parfor i=1:length(enlist1)
+for i=1:length(enlist1)
 %     fprintf("i_r=%d of %d\n",i,length(enlist));
     deltaf=eta./((enlist1(i)-enmap).^2+eta^2);
     ldosprod=psiAB2.*deltaf;
     ldosAB1(i)=sum(ldosprod(:));
 end
-parfor i=1:length(enlist2)
+for i=1:length(enlist2)
 %     fprintf("i_r=%d of %d\n",i,length(enlist));
     deltaf=eta./((enlist2(i)-enmap).^2+eta^2);
     ldosprod=psiAB2.*deltaf;

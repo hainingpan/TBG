@@ -1,10 +1,11 @@
 Vrange=linspace(0,20,50);
 psirange=linspace(0,360,50);
 bp=zeros(length(Vrange),length(psirange));
-
-for Vindex=1:length(Vrange)
-    for psiindex=1:length(psirange)
-        disp([Vindex,psiindex]);
+NV=length(Vrange);
+Npsi=length(psirange);
+parfor Vindex=1:NV
+    for psiindex=1:Npsi
+%         disp([Vindex,psiindex]);
         bp(Vindex,psiindex)=bf(psirange(psiindex),Vrange(Vindex),10);
     end
 end        
