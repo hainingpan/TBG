@@ -14,8 +14,8 @@ parfor Vindex=1:NV
     end
 end
 
-save('int1.dat','int1');
-save('int2.dat','int2');
+save('int1.dat','int1','-ascii');
+save('int2.dat','int2','-ascii');
 
 % parameters=mainTMD('m',0.35,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3);
 % parameters=mainTMD('m',0.35,'psi',100,'V',20,'w',10);

@@ -9,7 +9,7 @@ parfor Vindex=1:NV
         bp(Vindex,psiindex)=bf(psirange(psiindex),Vrange(Vindex),10);
     end
 end        
-save('bp.dat','bp');
+save('bp.dat','bp','-ascii');
 
 
 function bp=bf(psi,V,w)
