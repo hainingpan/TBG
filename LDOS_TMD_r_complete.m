@@ -1,4 +1,4 @@
-function [ldosAA,ldosAB,intAA,intAB,enlist]=LDOS_TMD_r_complete(parameters)
+function [ldosAA,ldosAB,enlist]=LDOS_TMD_r_complete(parameters)
 %AA:r=(0,0)
 %AB:r=(1/sqrt(3) aM,0) aM=a/theta
 rAA=[0,0];
@@ -55,9 +55,9 @@ end
 %     dos(i)=sum(deltaf(:));
 % end
 
-intAA=sum(ldosAA(min(enmap(:,:,1),[],'all')<=enlist & enlist<=max(enmap(:,:,1),[],'all')))...
-    /sum(ldosAA(min(enmap(:,:,2),[],'all')<=enlist & enlist<=max(enmap(:,:,2),[],'all')));
-intAB=sum(ldosAB(min(enmap(:,:,1),[],'all')<=enlist & enlist<=max(enmap(:,:,1),[],'all')))...
-    /sum(ldosAB(min(enmap(:,:,2),[],'all')<=enlist & enlist<=max(enmap(:,:,2),[],'all')));
+% intAA=sum(ldosAA(min(enmap(:,:,1),[],'all')<=enlist & enlist<=max(enmap(:,:,1),[],'all')))...
+%     /sum(ldosAA(min(enmap(:,:,2),[],'all')<=enlist & enlist<=max(enmap(:,:,2),[],'all')));
+% intAB=sum(ldosAB(min(enmap(:,:,1),[],'all')<=enlist & enlist<=max(enmap(:,:,1),[],'all')))...
+%     /sum(ldosAB(min(enmap(:,:,2),[],'all')<=enlist & enlist<=max(enmap(:,:,2),[],'all')));
 
 end

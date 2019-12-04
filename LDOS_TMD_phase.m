@@ -1,7 +1,9 @@
-Vrange=linspace(0,20,50);
-psirange=linspace(0,360,50);
-int1=zeros(length(Vrange),length(psirange));
-int2=zeros(length(Vrange),length(psirange));
+Vrange=linspace(0,20,2);
+psirange=linspace(0,360,2);
+dos1=zeros(length(Vrange),length(psirange),50);
+dos2=zeros(length(Vrange),length(psirange),50);
+enlist1=zeros(length(Vrange),length(psirange),50);
+enlist2=zeros(length(Vrange),length(psirange),50);
 NV=length(Vrange);
 Npsi=length(psirange);
 parfor Vindex=1:NV
@@ -10,16 +12,16 @@ parfor Vindex=1:NV
         psi=psirange(psiindex);
         V=Vrange(Vindex);
         parameters=mainTMD('m',0.35,'psi',psi,'V',V,'w',10,'theta',3);
-        [int1(Vindex,psiindex),int2(Vindex,psiindex)]=LDOS_TMD_r(parameters);
+        [dos1(Vindex,psiindex,:),dos2(Vindex,psiindex,:),...
+            enlist1(Vindex,psiindex,:),enlist2(Vindex,psiindex,:)]=LDOS_TMD_r(parameters);
     end
 end
 
-save('int1.dat','int1','-ascii');
-save('int2.dat','int2','-ascii');
+save('dos.mat');
 
 % parameters=mainTMD('m',0.35,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3);
 % parameters=mainTMD('m',0.35,'psi',100,'V',20,'w',10);
-% [ldosAA,ldosAB,intAA,intAB,enlist]=LDOS_TMD_r(parameters);
+% [dos1,dos2,enlist1,enlist2]=LDOS_TMD_r(parameters);
 % [int1,int2]=LDOS_TMD_r(parameters);
 
 % [ldos,enlist]=LDOS_TMD_rx(parameters);
