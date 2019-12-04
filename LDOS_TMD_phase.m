@@ -6,7 +6,7 @@ NV=length(Vrange);
 Npsi=length(psirange);
 parfor Vindex=1:NV
     for psiindex=1:Npsi
-        disp([Vindex,psiindex]);
+%         disp([Vindex,psiindex]);
         psi=psirange(psiindex);
         V=Vrange(Vindex);
         parameters=mainTMD('m',0.35,'psi',psi,'V',V,'w',10,'theta',3);
