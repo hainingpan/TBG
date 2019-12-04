@@ -1,0 +1,45 @@
+Vrange=linspace(0,20,100);
+psirange=linspace(0,360,100);
+
+GammaMap=zeros(length(Vrange),length(psirange));
+kGamma=[0,0];
+for Vindex=1:length(Vrange)
+    for psiindex=1:length(psirange)
+        GammaMap(Vindex,psiindex)=energydiff('Gamma',psirange(psiindex),Vrange(Vindex),10);
+    end
+end
+
+KappaMap=zeros(length(Vrange),length(psirange));
+kKappa=[0,0];
+for Vindex=1:length(Vrange)
+    for psiindex=1:length(psirange)
+        GammaMap(Vindex,psiindex)=energydiff('K+',psirange(psiindex),Vrange(Vindex),10);
+    end
+end
+
+KappaMap=zeros(length(Vrange),length(psirange));
+kGamma=[0,0];
+for Vindex=1:length(Vrange)
+    for psiindex=1:length(psirange)
+        GammaMap(Vindex,psiindex)=energydiff('K-',psirange(psiindex),Vrange(Vindex),10);
+    end
+end
+
+
+
+function diff=energydiff(kname,psi,V,w)
+parameters=mainTMD('m',0.35,'psi',psi,'V',V,'w',w);
+if strcmp(kname,'Gamma')
+    k=[0,0];
+end
+if strcmp(kname,'K+')
+    k=parameters.kp;
+end
+if strcmp(kname,'K-')
+    k=parameters.kn;
+end
+
+val=energyTMD(k(1),k(2),parameters);
+diff=val(1)-val(2);
+end
+

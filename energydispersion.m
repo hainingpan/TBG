@@ -23,6 +23,14 @@ for i=1:length(kxlist)
 end
 
 plot(klist,1000*energylist)
+hold on
+line(klist([1,1]),[-200,30]);
+line(klist([40,40]),[-200,30]);
+line(klist([80,80]),[-200,30]);
+line(klist([120,120]),[-200,30]);
+line(klist([200,200]),[-200,30]);
+
+
 xticks(klist([1,40,80,120,200]))
 xticklabels({'\kappa_+^\prime','\gamma','\kappa_-','\kappa_+','\kappa_+^\prime'});
 xlim([klist(1),klist(end)])

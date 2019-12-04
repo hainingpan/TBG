@@ -14,5 +14,4 @@
 %     end
 % end
 
-parameters=mainTMD('m',0.35,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',3);
-[ldosAA,ldosAB,dos,enlist]=LDOS_TMD_r(parameters);
+parameters=mainTMD('m',0.35,'psi',-0.33)
