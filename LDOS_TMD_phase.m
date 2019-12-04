@@ -1,5 +1,5 @@
-Vrange=linspace(0,20,2);
-psirange=linspace(0,360,2);
+Vrange=linspace(0,20,50);
+psirange=linspace(0,360,50);
 int1=zeros(length(Vrange),length(psirange));
 int2=zeros(length(Vrange),length(psirange));
 
@@ -8,7 +8,7 @@ for Vindex=1:length(Vrange)
         disp([Vindex,psiindex]);
         psi=psirange(psiindex);
         V=Vrange(Vindex);
-        parameters=mainTMD('m',0.35,'psi',psi,'V',V,'w',10);
+        parameters=mainTMD('m',0.35,'psi',psi,'V',V,'w',10,'theta',3);
         [int1(Vindex,psiindex),int2(Vindex,psiindex)]=LDOS_TMD_r(parameters);
     end
 end
