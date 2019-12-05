@@ -1,5 +1,5 @@
 function [kcxmap,kcymap,kcx2map,kcy2map,bcmap,omega]=berrycurvature(level,parameters)
-n=20;
+n=5;
 bM1=parameters.bM1;
 kp=parameters.kp;
 kn=parameters.kn;
