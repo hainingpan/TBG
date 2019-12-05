@@ -1,6 +1,6 @@
 function berryphase(NV,Npsi,w)
-Vrange=linspace(0,20,50);
-psirange=linspace(0,360,50);
+Vrange=linspace(0,20,NV);
+psirange=linspace(0,360,Npsi);
 bp=zeros(length(Vrange),length(psirange));
 % NV=length(Vrange);
 % Npsi=length(psirange);
