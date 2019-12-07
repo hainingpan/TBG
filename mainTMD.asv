@@ -11,6 +11,12 @@ addParameter(p,'Vz',0);
 parse(p,varargin{:});
 parameters=struct('a',p.Results.a,'m',p.Results.m*0.511e6,'theta',p.Results.theta/360*2*pi,'V',p.Results.V*1e-3,'psi'...
     ,p.Results.psi/360*2*pi,'w',p.Results.w*1e-3,'Vz',p.Results.Vz*1e-3,'Nmax',p.Results.Nmax);
+%Unit vectors
+parameters.a1=parameters.a*[1,0];
+parameters.a2=parameters.a*[1/2,sqrt(3)/2];
+parameters.aM=parameters.a/parameters.theta;
+parameters.aM1=parameters.aM*[sqrt(3)/2,-1/2];
+parameters.aM2=parameters.aM*[sqrt(3)/2,1/2];
 %Reciprocal lattice
 parameters.G1=[0,4*pi/(sqrt(3)*parameters.a)];
 parameters.G2=[-2*pi/parameters.a,(2*pi)/(sqrt(3)*parameters.a)];
@@ -18,12 +24,10 @@ parameters.G3=[-2*pi/parameters.a,-(2*pi)/(sqrt(3)*parameters.a)];
 parameters.G4=[0,-4*pi/(sqrt(3)*parameters.a)];
 parameters.G5=[2*pi/parameters.a,-(2*pi)/(sqrt(3)*parameters.a)];
 parameters.G6=[2*pi/parameters.a,(2*pi)/(sqrt(3)*parameters.a)];
-parameters.a1=parameters.a*[1,0];
-parameters.a2=parameters.a*[1/2,sqrt(3)/2];
-parameters.b1=parameters.G1;    %reciprocal unit vector of small lattice 
-parameters.b2=parameters.G5;    %reciprocal unit vector of small lattice
-parameters.bM1=parameters.theta.*[parameters.b1(2),-parameters.b1(1)];  %bM1=theta* cross(b1,z); reciprocal unit vector of Moire lattice
-parameters.bM2=parameters.theta.*[parameters.b2(2),-parameters.b2(1)];  %bM2=theta* cross(b2,z); reciprocal unit vector of Moire lattice
+parameters.b1=parameters.G5;    %reciprocal unit vector of small lattice 
+parameters.b2=parameters.G1;    %reciprocal unit vector of small lattice
+parameters.bM1=2*pi/parameters.aM*[1/sqrt(3),-1];  %bM1=theta* cross(b1,z); reciprocal unit vector of Moire lattice
+parameters.bM2=2*pi/parameters.aM*[1/sqrt(3),1];  %bM2=theta* cross(b2,z); reciprocal unit vector of Moire lattice
 parameters.kp=[-parameters.bM1(1)/2,-parameters.bM1(1)/2/sqrt(3)];  %k+=[-bM1.x/2,-bM1.x/2 tan(pi/6)]
 parameters.kn=[-parameters.bM1(1)/2,parameters.bM1(1)/2/sqrt(3)]; %k-=[-bM1.x/2,bM1.x/2 tan(pi/6)]
 

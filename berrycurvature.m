@@ -1,10 +1,11 @@
 function [kcxmap,kcymap,kcx2map,kcy2map,bcmap,omega]=berrycurvature(level,parameters)
 n=5;
 bM1=parameters.bM1;
+bM2=parameters.bM2;
 kp=parameters.kp;
 kn=parameters.kn;
-a1=[bM1(1)/2,3*kp(2)]/(2*n);
-a2=[bM1(1)/2,3*kn(2)]/(2*n);
+a1=bM2/(2*n);
+a2=(-2*bM1-bM2)/2/(2*n);
 xrange=-n:n;
 yrange=-n:n;
 kxmap=zeros(2*n+1,2*n+1);
@@ -28,46 +29,6 @@ for xindex=1:Nx
         kymap(xindex,yindex)=k(2);
     end
 end
-
-
-    
-% parfor xindex=1:length(xrange)
-%     kx=xrange(xindex);
-%     kxlist=zeros(1,2*n+1);
-%     kylist=zeros(1,2*n+1);
-%     kx2list=zeros(1,2*n+1);
-%     ky2list=zeros(1,2*n+1);
-%     ulist=zeros(2*n+1,2*(2*parameters.Nmax+1)^2);
-%     for yindex=1:length(yrange)        
-%         ky=yrange(yindex);
-%         k=kx*a1+ky*a2;
-%         kxlist(yindex)=k(1);
-%         kylist(yindex)=k(2);
-%         shift=[0,0];
-%         if (k(1)<=0) && (k(2)>=2*kn(2)/bM1(1)*k(1)+2*kn(2))
-%             shift=a1*2*n;
-%         end
-%         if (k(1)>=0) && (k(2)>=-2*kn(2)/bM1(1)*k(1)+2*kn(2))
-%             shift=-a2*2*n;
-%         end
-%         if (k(1)<=0) && (k(2)<=-2*kn(2)/bM1(1)*k(1)-2*kn(2))
-%             shift=a2*2*n;
-%         end
-%         if (k(1)>=0) && (k(2)<=2*kn(2)/bM1(1)*k(1)-2*kn(2))
-%             shift=-a1*2*n;
-%         end        
-%         kx2list(yindex)=k(1)+shift(1);
-%         ky2list(yindex)=k(2)+shift(2);
-%         [~,vec]=energyTMD(k(1),k(2),parameters);
-%         ulist(yindex,:)=vec(:,level);
-%     end
-%     kxmap(xindex,:)=kxlist;
-%     kymap(xindex,:)=kylist;
-%     kx2map(xindex,:)=kx2list;
-%     ky2map(xindex,:)=ky2list;
-%     umap(xindex,:,:)=ulist;
-% end
-
 
 kcxmap=(kxmap(1:end-1,1:end-1)+kxmap(1:end-1,2:end)+kxmap(2:end,1:end-1)+kxmap(2:end,2:end))/4;
 kcymap=(kymap(1:end-1,1:end-1)+kymap(1:end-1,2:end)+kymap(2:end,1:end-1)+kymap(2:end,2:end))/4;
