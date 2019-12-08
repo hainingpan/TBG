@@ -2,7 +2,7 @@ function [wbgrid,wtgrid]=w(R,rx,ry,parameters)
 %R: center of wannier state
 %r: scalar|array real space position
 
-n=20;
+n=10;
 state=1;
 xrange=-n:n;
 yrange=-n:n;
@@ -38,8 +38,8 @@ parfor xindex=1:Nkx
         ky=yrange(yindex);
         k=kx*a1+ky*a2;
         [~,vec]=energyTMD(k(1),k(2),parameters);
-        psib0=sum(vec(1:(2*Nmax+1^2),state)); %bloch wf at r=(0,0) on the bottom layer
-        gauge(xindex,yindex)=abs(psib0)/psib0;
+        psib0=sum(vec(1:(2*Nmax+1)^2,state)); %bloch wf at r=(0,0) on the bottom layer
+        gauge(xindex,yindex)=conj(abs(psib0)/psib0);
         [ubgrid,utgrid]=u(vec(:,state),rx,ry,parameters);
         expR(xindex,yindex)=exp(-1i*dot(k,R));
         psibgrid=ubgrid.*exp(1i*(k(1)*rx+k(2)*ry));
@@ -53,10 +53,10 @@ end
 
 expRgauge=(gauge.*expR);
 %use integral
-% Fb=expRgauge.*psibline;
-% Ft=expRgauge.*psitline;
-% wbline=trapz(kxmap(:,1),trapz(kymap(1,:),Fb,2))/omega;
-% wtline=trapz(kxmap(:,1),trapz(kymap(1,:),Ft,2))/omega;
+Fb=expRgauge.*psibline;
+Ft=expRgauge.*psitline;
+wbline=trapz(kxmap(:,1),trapz(kymap(1,:),Fb,2))/omega;
+wtline=trapz(kxmap(:,1),trapz(kymap(1,:),Ft,2))/omega;
 
 %use summation
 psib=reshape(psibline,[Nkx*Nky,Nrx*Nry]);
