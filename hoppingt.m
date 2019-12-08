@@ -11,7 +11,7 @@ bM2=parameters.bM2;
 %shift to diamond
 % a1=-bM1/(2*n);
 % a2=(bM1+bM2)/(2*n);
-%shift to triangular
+%shift to rectangular
 a1=bM2/(2*n);
 a2=(-2*bM1-bM2)/2/(2*n);
 enmap=zeros(2*n+1,2*n+1);
@@ -38,7 +38,7 @@ end
 for i=1:length(an)
     neigh=an{i}(1)*parameters.aM1+an{i}(2)*parameters.aM2;
 
-    %discrete sum
+    %use summation
     %re(i)=sum(exp(1i*(kxmap*neigh(1)+kymap*neigh(2))).*enmap,'all')/(2*n+1)^2;
 
     %use trapzodial integral
