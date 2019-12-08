@@ -1,6 +1,6 @@
 function parameters=mainTMD(varargin)
 p=inputParser;
-addParameter(p,'a',3.472e-4*5.076);
+addParameter(p,'a',3.472e-10*5.076e6);
 addParameter(p,'m',0.35);
 addParameter(p,'theta',1.2);
 addParameter(p,'V',8);
