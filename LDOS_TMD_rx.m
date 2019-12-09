@@ -8,10 +8,11 @@ n=20;
 xrange=-n:n;
 yrange=-n:n;
 bM1=parameters.bM1;
+bM2=parameters.bM2;
 kp=parameters.kp;
 kn=parameters.kn;
-a1=[bM1(1)/2,3*kp(2)]/(2*n);
-a2=[bM1(1)/2,3*kn(2)]/(2*n);
+a1=-bM1/(2*n);
+a2=(bM1+bM2)/(2*n);
 enmap=zeros(2*n+1,2*n+1,2*(2*parameters.Nmax+1)^2);
 
 

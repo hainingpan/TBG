@@ -21,7 +21,7 @@ energylist=zeros(2*(2*parameters.Nmax+1)^2,length(kxlist)); %initialize
 for i=1:length(kxlist)
     energylist(:,i)=energyTMD(kxlist(i),kylist(i),parameters);
 end
-figure;b
+figure;
 plot(klist,1000*energylist)
 hold on
 % line(klist([1,1]),[-200,30],'color','k','LineStyle','--');

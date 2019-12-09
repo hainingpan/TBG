@@ -14,6 +14,7 @@ bM2=parameters.bM2;
 % kn=parameters.kn;
 a1=bM2/(2*n);
 a2=(-2*bM1-bM2)/2/(2*n);
+
 enmap=zeros(2*n+1,2*n+1,2*(2*parameters.Nmax+1)^2);
 psiAA2=zeros(2*n+1,2*n+1,2*(2*parameters.Nmax+1)^2);
 psiAB2=zeros(2*n+1,2*n+1,2*(2*parameters.Nmax+1)^2);

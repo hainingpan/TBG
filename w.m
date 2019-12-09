@@ -2,7 +2,7 @@ function [wbgrid,wtgrid]=w(R,rx,ry,parameters)
 %R: center of wannier state
 %r: scalar|array real space position
 
-n=30;
+n=40;
 state=1;
 
 Nmax=parameters.Nmax;

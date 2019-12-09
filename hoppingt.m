@@ -6,8 +6,7 @@ yrange=-n:n;
 bM1=parameters.bM1;
 bM2=parameters.bM2;
 
-% a1=[bM1(1)/2,3*kp(2)]/(2*n);
-% a2=[bM1(1)/2,3*kn(2)]/(2*n);
+
 %shift to diamond
 % a1=-bM1/(2*n);
 % a2=(bM1+bM2)/(2*n);

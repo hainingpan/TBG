@@ -6,6 +6,7 @@ kp=parameters.kp;
 kn=parameters.kn;
 a1=bM2/(2*n);
 a2=(-2*bM1-bM2)/2/(2*n);
+
 xrange=-n:n;
 yrange=-n:n;
 kxmap=zeros(2*n+1,2*n+1);
