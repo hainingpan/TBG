@@ -2,39 +2,40 @@ function [wbgrid,wtgrid]=w_rec(R,rx,ry,parameters)
 %R: center of wannier state
 %r: scalar|array real space position
 %use rectangular (skew) grid
-n=20;
+n=9;
 state=1;
-xrange=-n:n;
-yrange=-n:n;
+xrange=-n:n-1;
+yrange=-n:n-1;
+Nkx=length(xrange);
+Nky=length(yrange);
 Nmax=parameters.Nmax;
 % aM=parameters.aM;
 bM1=parameters.bM1;
 bM2=parameters.bM2;
 %shift to diamond
-% a1=-bM1/(2*n);
-% a2=(bM1+bM2)/(2*n);
+a1=-bM1/(2*n);
+a2=(bM1+bM2)/(2*n);
 %shift to rectangular
-a1=bM2/(2*n);
-a2=(-2*bM1-bM2)/2/(2*n);
+% a1=bM2/(2*n);
+% a2=(-2*bM1-bM2)/2/(2*n);
 
 % [rx,ry]=meshgrid(linspace(-sqrt(3).aM,sqrt(3).aM,Nrx));
 [Nrx,Nry]=size(rx);
-rectangular(skew grid)
-kxmap=zeros(2*n+1,2*n+1);
-kymap=zeros(2*n+1,2*n+1);
-gauge=zeros(2*n+1,2*n+1);
-expR=zeros(2*n+1,2*n+1);
-psibline=zeros(2*n+1,2*n+1,Nrx*Nry);
-psitline=zeros(2*n+1,2*n+1,Nrx*Nry);
+% rectangular(skew grid)
+kxmap=zeros(Nkx,Nky);
+kymap=zeros(Nkx,Nky);
+gauge=zeros(Nkx,Nky);
+expR=zeros(Nkx,Nky);
+psibline=zeros(Nkx,Nky,Nrx*Nry);
+psitline=zeros(Nkx,Nky,Nrx*Nry);
 
-Nkx=length(xrange);
-Nky=length(yrange);
+
 
 omega=abs(cross([bM1,0],[bM2,0]));
 omega=omega(3);
 
 % rectangular(skew) grid, for diamond mesh and rectangular mesh
-for xindex=1:Nkx
+parfor xindex=1:Nkx
     kx=xrange(xindex);
     for yindex=1:Nky
         ky=yrange(yindex);
