@@ -5,8 +5,8 @@ bM2=parameters.bM2;
 [Nx,Ny]=size(rx);
 % [wbgrid,wtgrid]=w(R,rx,ry,parameters);
 alpha=0.00729735;
-Nkx=200;
-Nky=200;
+Nkx=50;
+Nky=50;
 kxlist=linspace(-3*bM2(1),3*bM2(1),Nkx);
 kylist=linspace(-3*bM2(1),3*bM2(1),Nky);
 

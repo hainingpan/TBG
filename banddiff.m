@@ -13,7 +13,7 @@ end
 save(sprintf('banddiffNV%dNpsi%dw%d.dat',NV,Npsi,w),'GammaMap','-ascii');
 
 function [diffGamma,diffkp]=energydiff(psi,V,w)
-parameters=mainTMD('m',0.35,'psi',psi,'V',V,'w',w,'theta',3);
+parameters=mainTMD('psi',psi,'V',V,'w',w,'theta',3);
 val=energyTMD(0,0,parameters);
 diffGamma=val(1)-val(2);
 % val=energyTMD(parameters.kp(1),parameters.kp(2),parameters);

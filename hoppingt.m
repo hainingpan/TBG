@@ -1,5 +1,5 @@
 function re=hoppingt(an,parameters)
-n=5;
+n=10;
 state=1;
 xrange=-n:n;
 yrange=-n:n;

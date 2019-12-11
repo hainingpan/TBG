@@ -1,11 +1,11 @@
-function [wbgrid,wtgrid]=w_rec(R,rx,ry,parameters)
+function [wbgrid,wtgrid]=w_rec(an,rx,ry,parameters)
 %R: center of wannier state
 %r: scalar|array real space position
 %use rectangular (skew) grid
-n=9;
+n=5;
 state=1;
-xrange=-n:n-1;
-yrange=-n:n-1;
+xrange=-n:n;
+yrange=-n:n;
 Nkx=length(xrange);
 Nky=length(yrange);
 Nmax=parameters.Nmax;
@@ -13,11 +13,11 @@ Nmax=parameters.Nmax;
 bM1=parameters.bM1;
 bM2=parameters.bM2;
 %shift to diamond
-a1=-bM1/(2*n);
-a2=(bM1+bM2)/(2*n);
+% a1=-bM1/(2*n);
+% a2=(bM1+bM2)/(2*n);
 %shift to rectangular
-% a1=bM2/(2*n);
-% a2=(-2*bM1-bM2)/2/(2*n);
+a1=bM2/(2*n);
+a2=(-2*bM1-bM2)/2/(2*n);
 
 % [rx,ry]=meshgrid(linspace(-sqrt(3).aM,sqrt(3).aM,Nrx));
 [Nrx,Nry]=size(rx);
@@ -44,7 +44,7 @@ parfor xindex=1:Nkx
         psib0=sum(vec(1:(2*Nmax+1)^2,state)); %bloch wf at r=(0,0) on the bottom layer
         gauge(xindex,yindex)=conj(abs(psib0)/psib0);
         [ubgrid,utgrid]=u(vec(:,state),rx,ry,parameters);
-        expR(xindex,yindex)=exp(-1i*dot(k,R));
+%         expR(xindex,yindex)=exp(-1i*dot(k,R));
         psibgrid=ubgrid.*exp(1i*(k(1)*rx+k(2)*ry));
         psitgrid=utgrid.*exp(1i*(k(1)*rx+k(2)*ry));
         psibline(xindex,yindex,:)=psibgrid(:);
@@ -54,23 +54,26 @@ parfor xindex=1:Nkx
     end
 end
 
+for i=1:length(an)
+    R=an{i}(1)*parameters.aM1+an{i}(2)*parameters.aM2;
+    expR=exp(-1i*(kxmap*R(1)+kymap*R(2)));
+    expRgauge=(gauge.*expR);
+     
+    %use integral, rectangular(skew) grid
+    Fb=expRgauge.*psibline;
+    Ft=expRgauge.*psitline;
+    wbline=trapz(kxmap(:,1),trapz(kymap(1,:),Fb,2))/omega;
+    wtline=trapz(kxmap(:,1),trapz(kymap(1,:),Ft,2))/omega;
 
-expRgauge=(gauge.*expR);
-% 
-%use integral, rectangular(skew) grid
-% Fb=expRgauge.*psibline;
-% Ft=expRgauge.*psitline;
-% wbline=trapz(kxmap(:,1),trapz(kymap(1,:),Fb,2))/omega;
-% wtline=trapz(kxmap(:,1),trapz(kymap(1,:),Ft,2))/omega;
+    %use summation, rectangular(skew) grid,
+    % psib=reshape(psibline,[Nkx*Nky,Nrx*Nry]);
+    % psit=reshape(psitline,[Nkx*Nky,Nrx*Nry]);
+    % wbline=expRgauge(:).'*psib/(Nkx*Nky);
+    % wtline=expRgauge(:).'*psit/(Nkx*Nky);
 
-%use summation, rectangular(skew) grid,
-psib=reshape(psibline,[Nkx*Nky,Nrx*Nry]);
-psit=reshape(psitline,[Nkx*Nky,Nrx*Nry]);
-wbline=expRgauge(:).'*psib/(Nkx*Nky);
-wtline=expRgauge(:).'*psit/(Nkx*Nky);
-
-wbgrid=reshape(wbline,[Nrx,Nry]);
-wtgrid=reshape(wtline,[Nrx,Nry]);
+    wbgrid(:,:,i)=reshape(wbline,[Nrx,Nry]);
+    wtgrid(:,:,i)=reshape(wtline,[Nrx,Nry]);
+end
 
 end
 

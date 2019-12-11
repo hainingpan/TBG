@@ -1,7 +1,7 @@
 function parameters=mainTMD(varargin)
 p=inputParser;
-addParameter(p,'a',3.472e-10*5.076e6);
-addParameter(p,'m',0.35);
+addParameter(p,'a',3.28e-10*5.076e6);
+addParameter(p,'m',0.45);
 addParameter(p,'theta',1.2);
 addParameter(p,'V',8);
 addParameter(p,'psi',-89.6);

@@ -17,10 +17,9 @@ kylist=[kpp_gamma_y,gamma_kn_y,kn_kp_y,kp_kpp_y];
 segment=sqrt(diff(kxlist).^2+diff(kylist).^2);
 klist=[0,cumsum(segment)];
 
-energylist=zeros(2*(2*parameters.Nmax+1)^2,length(kxlist)); %initialize
-for i=1:length(kxlist)
-    energylist(:,i)=energyTMD(kxlist(i),kylist(i),parameters);
-end
+
+energylist=real(tb([neighbor0list,neighbor1list,neighbor2list,neighbor3list,neighbor4list,neighbor5list],[t0,t1,t2,t3,t4,t5],kxlist,kylist,parameters));
+
 figure;
 plot(klist,1000*energylist)
 hold on
@@ -32,4 +31,4 @@ line(klist([120,120]),[-200,30],'color','k','LineStyle','--','HandleVisibility',
 xticks(klist([1,40,80,120,200]))
 xticklabels({'\kappa_+^\prime','\gamma','\kappa_-','\kappa_+','\kappa_+^\prime'});
 xlim([klist(1),klist(end)])
-ylim([min(1000*energylist(5,:)),1.2*max(1000*energylist(1,:))])
+% ylim([min(1000*energylist(5,:)),1.2*max(1000*energylist(1,:))])
