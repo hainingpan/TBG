@@ -17,8 +17,8 @@ kylist=[kpp_gamma_y,gamma_kn_y,kn_kp_y,kp_kpp_y];
 segment=sqrt(diff(kxlist).^2+diff(kylist).^2);
 klist=[0,cumsum(segment)];
 
-
-energylist=real(tb([neighbor0list,neighbor1list,neighbor2list,neighbor3list,neighbor4list,neighbor5list],[t0,t1,t2,t3,t4,t5],kxlist,kylist,parameters));
+k=3;
+energylist=real(tb([neighborlist{1:k+1}],[t{1:k+1}],kxlist,kylist,parameters));
 
 figure;
 plot(klist,1000*energylist)
