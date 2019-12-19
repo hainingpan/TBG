@@ -1,5 +1,5 @@
 function run_dos_vs_nu()
-Vzlist=linspace(-50,50,11);
+Vzlist=linspace(20,30,11);
 n=20;
 N=3*n^2+3*n+1;
 Nen=2000;
@@ -20,6 +20,6 @@ for i=1:length(Vzlist)
     [gap(i),~]=phasediagram(4,Vzlist(i),0.02);
 end
 clear i n N Nen
-save('dosvsnu.mat');
+save('dosvsnuVz20-30.mat');
 % save('gap.dat','gap','-ascii');
 end
