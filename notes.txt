@@ -6,3 +6,7 @@ Fig 2f
 Fig 3d (*)
 
 phase diagram fig3c
+
+1.DOS/ Am DOS(eV^-1 nm^-2)
+2.sample points between epsilon^-1 0.02-0.05
+3.fit epsilon for different theta by looking for the peak
