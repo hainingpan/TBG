@@ -18,7 +18,7 @@ off_H=U*[S(1,1,1),S(1,1,3),S(1,1,2),S(1,2,1),S(1,2,3),S(1,2,2);
        S(2,1,3),S(2,1,2),S(2,1,1),S(2,2,3),S(2,2,2),S(2,2,1)];
 energyall=zeros(N,6);
 wfall=cell(N,6);
-parfor i=1:N
+for i=1:N
     H=diag(energylist(i,:))+off_H;
     [vec,val]=eig(H);
     val=real(diag(val));

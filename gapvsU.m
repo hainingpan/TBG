@@ -4,7 +4,6 @@ for i=1:length(Ulist)
     gaplist(i)=allk(Ulist(i),neighborlist,t,parameters);
 end
 
-
 function re=allk(Ux,neighborlist,t,parameters)
 n=10;
 counter=1;
@@ -34,7 +33,7 @@ S=S0;
 clear mu SS m
 i=0;
 gap=0;
-while (length(gap)<=2 || abs(gap(i)-gap(i-1))>1e-5)
+while (length(gap)<=2 || abs(gap(i)-gap(i-1))>1e-4)
     i=i+1;
     [energyall,wfall]=energyMF(kx3list,ky3list,S,[neighborlist{1:k+1}],[t{1:k+1}],Ux,parameters);
     [S,mu(i)]=S_calc(energyall,wfall);

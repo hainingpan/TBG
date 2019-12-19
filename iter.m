@@ -1,4 +1,4 @@
-n=10;
+n=40;
 counter=1;
 N=3*n^2+3*n+1;
 kx3list=zeros(N,1);
@@ -29,7 +29,7 @@ i=0;
 gap=0;
 while (length(gap)<=2 || abs(gap(i)-gap(i-1))>1e-5)
     i=i+1;
-    [energyall,wfall]=energyMF(kx3list,ky3list,S,[neighborlist{1:k+1}],[t{1:k+1}],U{1}/10,parameters);
+    [energyall,wfall]=energyMF(kx3list,ky3list,S,[neighborlist{1:k+1}],[t{1:k+1}],U{1}*0/10,parameters);
     [S,mu(i)]=S_calc(energyall,wfall);
     SS{i}=S;
     m(:,:,i)=spin(energyall,wfall,parameters);

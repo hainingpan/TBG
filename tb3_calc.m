@@ -24,10 +24,10 @@ for yindex=-n:n
     end
 end
 k=3;
-parfor i=1:N
-    entmp=energyTMD(kxlist(i)+parameters.bM2(1),kylist(i),parameters);
-    energyTMDlist(i)=max(entmp);
-end
+% parfor i=1:N
+%     entmp=energyTMD(kxlist(i)+parameters.bM2(1),kylist(i),parameters);
+%     energyTMDlist(i)=max(entmp);
+% end
 energylist=real(tb([neighborlist{1:k+1}],[t{1:k+1}],kxlist,kylist,parameters));
 
 energy3list=real(tb3(Neighborlist,tmat,kx3list,ky3list,parameters));
