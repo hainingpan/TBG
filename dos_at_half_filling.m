@@ -31,9 +31,9 @@ eta=5e-4;
 
 energylist_sort=sort(energylist);
 energy_at_half=energylist_sort(floor(end/2));
-deltaf=eta./((energy_at_half-energylist).^2+eta^2);
+deltaf=1/pi*eta./((energy_at_half-energylist).^2+eta^2);
 dos=sum(deltaf(:));
-dos=dos/length(energylist);
+dos=dos/length(energylist)/(sqrt(3)/2*(parameters.aM/5.076e-3)^2);  % of eV^-1 nm^-2
 
 end
 

@@ -53,10 +53,10 @@ enlist=linspace(min(energylist),max(energylist),Nen);
 dos=zeros(1,length(enlist));
 nu=zeros(1,length(enlist));
 for i=1:length(enlist)
-    deltaf=eta./((enlist(i)-energylist).^2+eta^2);
+    deltaf=1/pi*eta./((enlist(i)-energylist).^2+eta^2);
     dos(i)=sum(deltaf(:));
     nu(i)=sum(energylist<=enlist(i))/length(energylist);
 end
-dos=dos/length(energylist);
+dos=dos/length(energylist)/(sqrt(3)/2*(parameters.aM/5.076e-3)^2);  % of eV^-1 nm^-2
 [~,I]=max(dos);
 E_vanHove=enlist(I);
