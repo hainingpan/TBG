@@ -6,9 +6,8 @@ epsilonlist=0.005:0.005:0.04;
 gap=zeros(NVz,Nangle,length(epsilonlist));
 isconverge=zeros(NVz,Nangle,length(epsilonlist));
 
-for i=1:NVz
+parfor i=1:NVz
     for j=1:Nangle
-        fprintf()
         [gap(i,j,:),isconverge(i,j,:)]=phasediagram(anglelist(j),Vzlist(i),epsilonlist);
     end
 end
