@@ -37,9 +37,9 @@ enlist=linspace(min(enmap(:,:,4),[],'all'),max(enmap(:,:,1),[],'all'),100);
 ldos=zeros(length(rlistx),length(enlist));
 for i=1:length(rlistx)
     for j=1:length(enlist)
-        deltaf=eta./((enlist(j)-enmap).^2+eta^2);
+        deltaf=1/pi*eta./((enlist(j)-enmap).^2+eta^2);
         ldosprod=psir{i}.*deltaf;
-        ldos(i,j)=sum(ldosprod(:));
+        ldos(i,j)=sum(ldosprod(:)); %in the unit of eV^-1*nm^-4
     end
 end
 end
