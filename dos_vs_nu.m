@@ -27,12 +27,13 @@ end
 k=3;
 energylist=real(tb([neighborlist{1:k+1}],[t{1:k+1}],kxlist,kylist,parameters));
 
-n=20;
+n=20;   %only for plotting energy band
 N=3*n^2+3*n+1;
 kxlist=zeros(N,1);
 kylist=zeros(N,1);
 a1=-(2*parameters.bM1+parameters.bM2)/3/n;
-a2=(parameters.bM1+2*parameters.bM2)/3/n;counter=1;
+a2=(parameters.bM1+2*parameters.bM2)/3/n;
+counter=1;
 for yindex=-n:n
     for xindex=max(-n,-n+yindex):min(n+yindex,n)
         k=xindex*a1+yindex*a2;
@@ -55,7 +56,7 @@ nu=zeros(1,length(enlist));
 for i=1:length(enlist)
     deltaf=1/pi*eta./((enlist(i)-energylist).^2+eta^2);
     dos(i)=sum(deltaf(:));
-    nu(i)=sum(energylist<=enlist(i))/length(energylist);
+    nu(i)=sum(energylist>=enlist(i))/length(energylist);
 end
 dos=dos/length(energylist)/(sqrt(3)/2*(parameters.aM/5.076e-3)^2);  % of eV^-1 nm^-2
 [~,I]=max(dos);

@@ -1,8 +1,12 @@
 Nangle=50;
 NVz=50;
-anglelist=linspace(3.5,5.5,Nangle);
+anglelist=linspace(3.,6,Nangle);
+% anglelist=[3,4];
+% Nangle=length(anglelist);
 Vzlist=linspace(0,50,NVz);
-epsilonlist=0.005:0.005:0.04;
+% epsilonlist=0.005:0.005:0.04;
+% epsilonlist=1./[10,20,30,40];
+epsilonlist=1./[30];
 gap=zeros(NVz,Nangle,length(epsilonlist));
 isconverge=zeros(NVz,Nangle,length(epsilonlist));
 

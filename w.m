@@ -2,7 +2,7 @@ function [wbgrid,wtgrid]=w(R,rx,ry,parameters)
 %R: center of wannier state
 %r: scalar|array real space position
 
-n=40;
+n=20;
 state=1;
 
 Nmax=parameters.Nmax;
@@ -22,6 +22,9 @@ gauge=zeros(N,1);
 expR=zeros(N,1);
 psibline=zeros(N,Nrx*Nry);
 psitline=zeros(N,Nrx*Nry);
+V=abs(cross([parameters.aM1,0],[parameters.aM2,0]));
+V=V(3);
+
 for yindex=-n:n
     for xindex=max(-n,-n+yindex):min(n+yindex,n)
         k=xindex*a1+yindex*a2;
@@ -31,15 +34,15 @@ for yindex=-n:n
     end
 end
 
-parfor index=1:N
+for index=1:N
     k=[kxmap(index),kymap(index)];
     [~,vec]=energyTMD(k(1),k(2),parameters);
     psib0=sum(vec(1:(2*Nmax+1)^2,state)); %bloch wf at r=(0,0) on the bottom layer
     gauge(index)=conj(abs(psib0)/psib0);
     [ubgrid,utgrid]=u(vec(:,state),rx,ry,parameters);
     expR(index)=exp(-1i*dot(k,R));
-    psibgrid=ubgrid.*exp(1i*(k(1)*rx+k(2)*ry));
-    psitgrid=utgrid.*exp(1i*(k(1)*rx+k(2)*ry));
+    psibgrid=ubgrid.*exp(1i*(k(1)*rx+k(2)*ry))/sqrt(V); 
+    psitgrid=utgrid.*exp(1i*(k(1)*rx+k(2)*ry))/sqrt(V); 
     psibline(index,:)=psibgrid(:);
     psitline(index,:)=psitgrid(:);        
 end

@@ -29,10 +29,13 @@ expR=zeros(Nkx,Nky);
 psibline=zeros(Nkx,Nky,Nrx*Nry);
 psitline=zeros(Nkx,Nky,Nrx*Nry);
 
-
-
+%Unit cell in momentum space
 omega=abs(cross([bM1,0],[bM2,0]));
 omega=omega(3);
+
+%Unit cell in real space
+V=abs(cross([parameters.aM1,0],[parameters.aM2,0]));
+V=V(3);
 
 % rectangular(skew) grid, for diamond mesh and rectangular mesh
 parfor xindex=1:Nkx
@@ -45,8 +48,8 @@ parfor xindex=1:Nkx
         gauge(xindex,yindex)=conj(abs(psib0)/psib0);
         [ubgrid,utgrid]=u(vec(:,state),rx,ry,parameters);
 %         expR(xindex,yindex)=exp(-1i*dot(k,R));
-        psibgrid=ubgrid.*exp(1i*(k(1)*rx+k(2)*ry));
-        psitgrid=utgrid.*exp(1i*(k(1)*rx+k(2)*ry));
+        psibgrid=ubgrid.*exp(1i*(k(1)*rx+k(2)*ry))/sqrt(V);
+        psitgrid=utgrid.*exp(1i*(k(1)*rx+k(2)*ry))/sqrt(V);
         psibline(xindex,yindex,:)=psibgrid(:);
         psitline(xindex,yindex,:)=psitgrid(:);        
         kxmap(xindex,yindex)=k(1);

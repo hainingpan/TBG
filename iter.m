@@ -19,7 +19,7 @@ end
 k=3;
 % S=zeros(2,2,3);
 % S=ones(2,2,3);
-m0=[1,0,0;cos(-2*pi/3),sin(-2*pi/3),0;cos(-4*pi/3),sin(-4*pi/3),0]';
+m0=[1,0,0;cos(-2.1*pi/3),sin(-2.1*pi/3),0;cos(-3.9*pi/3),sin(-3.9*pi/3),0]';
 %  m0=[1,0,0;0,1,0;0,-1,0]';
 S0=init(m0,parameters);
 S=S0;
