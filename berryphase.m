@@ -15,7 +15,7 @@ save(sprintf('bpNV%dNpsi%dw%d.dat',NV,Npsi,w),'bp','-ascii');
 
 function bp=bf(psi,V,w)
 parameters=mainTMD('psi',psi,'V',V,'w',w,'theta',3);
-[~,~,~,~,bcmap,omega]=berrycurvature(1,parameters);
+[~,~,~,~,bcmap,omega]=berrycurvature(2,parameters);
 bp=sum(bcmap(:))*omega/(2*pi);
 end
 end
