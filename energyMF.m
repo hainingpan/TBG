@@ -1,5 +1,5 @@
 function [energyall,wfall]=energyMF(kxlist,kylist,S,bond,t,U,parameters)
-%S(a,b,c), a,b=1(up) or 2(down) c=1,2,3 (0, Q, -Q)
+%S(a,b,c): a,b=1(up) or 2(down), c=1,2,3 (0, Q, -Q)
 N=length(kxlist);
 Q=parameters.kn-parameters.kp;
 kx1list=kxlist; %q=0

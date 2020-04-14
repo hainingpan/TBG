@@ -40,7 +40,8 @@ for xindex=1:Nx
     end
 end
 
-enlist=linspace(min(enmap(:,:,4),[],'all'),1.2*max(enmap(:,:,1),[],'all'),100);
+% enlist=linspace(min(enmap(:,:,4),[],'all'),1.2*max(enmap(:,:,1),[],'all'),100);
+enlist=linspace(-20e-3,40e-3,100);
 Nen=length(enlist);
 ldos=zeros(length(rlistx),length(enlist));
 
