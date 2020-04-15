@@ -1,8 +1,8 @@
 function gap_Zeeman(epsilon,theta)
 
-NVz=20;
+NVz=51;
 Vzlist=linspace(0,50,NVz);
-NB=20;
+NB=41;
 Blist=linspace(0,10,NB);
 
 gapmap=zeros(NVz,NB);
