@@ -1,8 +1,8 @@
 function gap_Zeeman(epsilon,theta)
 
-NVz=3;
+NVz=20;
 Vzlist=linspace(0,50,NVz);
-NB=3;
+NB=20;
 Blist=linspace(0,10,NB);
 
 gapmap=zeros(NVz,NB);
@@ -59,7 +59,7 @@ Blist=linspace(0,10,NB);
     gapmap(Vzindex,Bindex)=gap;
     end
 end
-save(strcat('ep',num2str(epsilon),'theta',num2str(theta),'.mat'),'gapmap','szmap','Vzlist','Blist')
+save(strcat('gap_ep',num2str(epsilon),'theta',num2str(theta),'.mat'),'gapmap','szmap','Vzlist','Blist')
 end
 
 
