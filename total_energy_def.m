@@ -6,7 +6,7 @@ occupied=energyall<=mu;
 wf_occupied=[wfall{occupied}];
 N=length(wf_occupied);
 Q=parameters.kn-parameters.kp;
-
+Ez=parameters.Ez;
 
 kx1list=kxlist; %q=0
 ky1list=kylist;
@@ -15,12 +15,12 @@ ky2list=kylist+Q(2);    %q=Q
 kx3list=kxlist-Q(1);
 ky3list=kylist-Q(2);    %q=-Q
 energylist=real(tb(bond,t,[kx1list,kx2list,kx3list,-kx1list,-kx2list,-kx3list],[ky1list,ky2list,ky3list,-ky1list,-ky2list,-ky3list],parameters));
-ek{1,1}=repmat(energylist(:,1),[1,6]);
-ek{2,1}=repmat(energylist(:,2),[1,6]);
-ek{3,1}=repmat(energylist(:,3),[1,6]);
-ek{1,2}=repmat(energylist(:,4),[1,6]);
-ek{2,2}=repmat(energylist(:,5),[1,6]);
-ek{3,2}=repmat(energylist(:,6),[1,6]);
+ek{1,1}=repmat(energylist(:,1),[1,6])+Ez;
+ek{2,1}=repmat(energylist(:,2),[1,6])+Ez;
+ek{3,1}=repmat(energylist(:,3),[1,6])+Ez;
+ek{1,2}=repmat(energylist(:,4),[1,6])-Ez;
+ek{2,2}=repmat(energylist(:,5),[1,6])-Ez;
+ek{3,2}=repmat(energylist(:,6),[1,6])-Ez;
 
 for i=1:3
     for j=1:2
