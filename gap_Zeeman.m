@@ -34,7 +34,7 @@ end
 
 k=3;
 Blist=linspace(0,10,NB);
-    for Bindex=1:NB
+    parfor Bindex=1:NB
 
     parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',theta,'Vz',Vzlist(Vzindex),'B',Blist(Bindex));
     m0=[1,0,0.;cos(-2.*pi/3),sin(-2.*pi/3),0.;cos(-4.*pi/3),sin(-4.*pi/3),0.]';
