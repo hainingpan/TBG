@@ -3,12 +3,12 @@ function gap_Zeeman(epsilon,theta)
 NVz=51;
 Vzlist=linspace(0,50,NVz);
 NB=41;
-Blist=linspace(0,10,NB);
+Blist=linspace(0,15,NB);
 
 gapmap=zeros(NVz,NB);
 szmap=zeros(NVz,NB,3);
     
-for Vzindex=1:NVz    
+parfor Vzindex=1:NVz    
 parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',theta,'Vz',Vzlist(Vzindex),'B',0);
 [t,neighborlist]=t_calc_func(3,parameters);
 U=U_calc_func(0,parameters);
@@ -33,12 +33,13 @@ for yindex=-n:n
 end
 
 k=3;
+    m=[1,0,0.;cos(-2.*pi/3),sin(-2.*pi/3),0.;cos(-4.*pi/3),sin(-4.*pi/3),0.]';
+
 Blist=linspace(0,10,NB);
-    parfor Bindex=1:NB
+    for Bindex=1:NB
 
     parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',theta,'Vz',Vzlist(Vzindex),'B',Blist(Bindex));
-    m0=[1,0,0.;cos(-2.*pi/3),sin(-2.*pi/3),0.;cos(-4.*pi/3),sin(-4.*pi/3),0.]';
-    S0=init(m0,parameters);
+    S0=init(m,parameters);
     S=S0;
     itermax=1000;
     phi=zeros(itermax,3);
