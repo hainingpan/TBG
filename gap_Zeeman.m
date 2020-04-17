@@ -7,7 +7,7 @@ Blist=linspace(0,15,NB);
 
 gapmap=zeros(NVz,NB);
 szmap=zeros(NVz,NB,3);
-    
+isconverge=zeros(NVz,NB);
 parfor Vzindex=1:NVz    
 parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',theta,'Vz',Vzlist(Vzindex),'B',0);
 [t,neighborlist]=t_calc_func(3,parameters);
@@ -33,7 +33,7 @@ for yindex=-n:n
 end
 
 k=3;
-    m=[1,0,0.;cos(-2.*pi/3),sin(-2.*pi/3),0.;cos(-4.*pi/3),sin(-4.*pi/3),0.]';
+m=[1,0,0.;cos(-2.*pi/3),sin(-2.*pi/3),0.;cos(-4.*pi/3),sin(-4.*pi/3),0.]';
 
 Blist=linspace(0,10,NB);
     for Bindex=1:NB
@@ -41,7 +41,7 @@ Blist=linspace(0,10,NB);
     parameters=mainTMD('m',0.45,'psi',-0.3329/(2*pi)*360,'V',4.428,'w',20,'theta',theta,'Vz',Vzlist(Vzindex),'B',Blist(Bindex));
     S0=init(m,parameters);
     S=S0;
-    itermax=1000;
+    itermax=2000;
     phi=zeros(itermax,3);
 
     i=0;
@@ -58,9 +58,10 @@ Blist=linspace(0,10,NB);
     end
     szmap(Vzindex,Bindex,:)=cos(phi*pi/180);
     gapmap(Vzindex,Bindex)=gap;
+    isconverge(Vzindex,Bindex)=i;
     end
 end
-save(strcat('gap_ep',num2str(epsilon),'theta',num2str(theta),'.mat'),'gapmap','szmap','Vzlist','Blist')
+save(strcat('gap_ep',num2str(epsilon),'theta',num2str(theta),'.mat'),'gapmap','szmap','Vzlist','Blist','isconverge');
 end
 
 
